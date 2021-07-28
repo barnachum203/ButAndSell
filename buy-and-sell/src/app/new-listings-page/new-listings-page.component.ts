@@ -7,16 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-listings-page.component.css'],
 })
 export class NewListingsPageComponent implements OnInit {
-  name: string = '';
-  description: string = '';
-  price: string = '';
-
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     alert('Creating a new listing...');
-    this.router.navigateByUrl('/listings');
+    this.router.navigateByUrl('/my-listings');
   }
 }
