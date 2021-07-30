@@ -5,5 +5,5 @@ import { addViewToListingRoute } from "./addViewToListing"
 export default[
     getAllListingsRoutes,
     getListingRoute,
-    addViewToListingRoute.
+    addViewToListingRoute,
 ];
