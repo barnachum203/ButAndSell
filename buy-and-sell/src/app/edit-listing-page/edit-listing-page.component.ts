@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute ,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Listing } from '../types';
 import { fakeListings, fakeMyListings } from '../fake-data';
+import { ListingsService } from '../listings.service';
 
 @Component({
   selector: 'app-edit-listing-page',
@@ -14,15 +15,21 @@ export class EditListingPageComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    ) {}
+    private listingsSerivice: ListingsService
+  ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.listing = fakeMyListings.find(listing => listing.id === id);
+    const id = this.route.snapshot.paramMap.get('id') || 'null';
+    this.listingsSerivice
+      .getListingsById(id)
+      .subscribe((listings) => (this.listing = listings));
   }
 
-  onSubmit(): void {
-    alert('Saving changes to the listing...');
-    this.router.navigateByUrl('/my-listings');
+  onSubmit(event: any): void {
+    this.listingsSerivice
+      .editListing(this.listing.id, event.name, event.description, event.price)
+      .subscribe(() => {
+        this.router.navigateByUrl('/my-listings');
+      });
   }
 }
