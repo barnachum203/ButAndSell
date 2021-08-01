@@ -9,7 +9,9 @@
 
 # dependencies
 /node_modules
-/credentials.json
+buy-and-sell-backend/node_modules
+buy-and-sell-backend/credentials.json
+
 # profiling files
 chrome-profiler-events*.json
 
